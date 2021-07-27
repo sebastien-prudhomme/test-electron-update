@@ -214,6 +214,8 @@ module.exports = configure(function (ctx) {
         }
       },
 
+      nodeIntegration: true,
+
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
       chainWebpackMain (chain) {
         chain.plugin('eslint-webpack-plugin')

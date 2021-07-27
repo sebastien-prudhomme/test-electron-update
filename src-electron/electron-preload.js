@@ -15,3 +15,17 @@
  *     doAThing: () => {}
  *   })
  */
+
+const { contextBridge, ipcRenderer } = require('electron')
+
+contextBridge.exposeInMainWorld('ipcRenderer', {
+  send: (...args) => {
+    ipcRenderer.send(...args)
+  },
+  on: (...args) => {
+    ipcRenderer.on(...args)
+  },
+  removeAllListeners: (...args) => {
+    ipcRenderer.removeAllListeners(...args)
+  }
+})

@@ -6,7 +6,6 @@
 
 <script>
 import { defineComponent } from 'vue'
-import { ipcRenderer } from 'electron'
 
 export default defineComponent({
   name: 'PageIndex',
@@ -14,14 +13,14 @@ export default defineComponent({
     return {
       version: ''
     }
-  }
-  // mounted: function () {
-  //   ipcRenderer.send('app_version')
+  },
+  mounted: function () {
+    window.ipcRenderer.send('app_version')
 
-  //   ipcRenderer.on('app_version', (event, arg) => {
-  //     ipcRenderer.removeAllListeners('app_version')
-  //     this.version = 'Version ' + arg.version
-  //   })
-  // }
+    window.ipcRenderer.on('app_version', (event, arg) => {
+      window.ipcRenderer.removeAllListeners('app_version')
+      this.version = 'Version ' + arg.version
+    })
+  }
 })
 </script>
